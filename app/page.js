@@ -27,6 +27,21 @@ export default function Home() {
   const [stats, setStats] = useState(null);
   const [filter, setFilter] = useState("all");
   const [error, setError] = useState(false);
+  const [fabHidden, setFabHidden] = useState(false);
+
+  // The big "add one" banner only greets first-time visitors at the top of
+  // the page — dismiss it permanently on first scroll (the header button
+  // remains as the way to add).
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 60) {
+        setFabHidden(true);
+        window.removeEventListener("scroll", onScroll);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -191,7 +206,7 @@ export default function Home() {
         </footer>
       </main>
 
-      <Link href="/add" className="fab">
+      <Link href="/add" className={`fab ${fabHidden ? "fab-hidden" : ""}`}>
         ♨️ Found a microwave we're missing? Add it
       </Link>
     </>

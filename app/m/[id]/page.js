@@ -16,6 +16,10 @@ export default function MicrowavePage({ params }) {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
+  const [editingDir, setEditingDir] = useState(false);
+  const [dirDraft, setDirDraft] = useState("");
+  const [savingDir, setSavingDir] = useState(false);
+  const [dirError, setDirError] = useState("");
 
   useEffect(() => {
     fetch("/api/microwaves")
@@ -49,6 +53,28 @@ export default function MicrowavePage({ params }) {
       setError("Couldn't submit your report. Try again.");
     } finally {
       setSubmitting(false);
+    }
+  }
+
+  async function saveDirections() {
+    const trimmed = dirDraft.trim();
+    if (!trimmed || savingDir) return;
+    setSavingDir(true);
+    setDirError("");
+    try {
+      const res = await fetch("/api/microwaves/directions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, directions: trimmed }),
+      });
+      if (!res.ok) throw new Error();
+      const d = await res.json();
+      setMw(d.microwave);
+      setEditingDir(false);
+    } catch {
+      setDirError("Couldn't save. Try again.");
+    } finally {
+      setSavingDir(false);
     }
   }
 
@@ -116,12 +142,63 @@ export default function MicrowavePage({ params }) {
           </div>
         </div>
 
-        {mw.directions && (
-          <div className="detail-directions">
+        <div className="detail-directions">
+          <div className="dir-head">
             <strong>How to find it</strong>
-            {mw.directions}
+            {!editingDir && (
+              <button
+                className="dir-edit-btn"
+                onClick={() => {
+                  setDirDraft(mw.directions || "");
+                  setDirError("");
+                  setEditingDir(true);
+                }}
+              >
+                ✏️ {mw.directions ? "Edit" : "Add"}
+              </button>
+            )}
           </div>
-        )}
+          {!editingDir &&
+            (mw.directions || (
+              <span style={{ color: "var(--muted)" }}>
+                No directions yet — know where this one hides? Add them!
+              </span>
+            ))}
+          {editingDir && (
+            <>
+              <textarea
+                className="note-input"
+                style={{ marginTop: 6 }}
+                rows={3}
+                maxLength={280}
+                autoFocus
+                placeholder="e.g. Past the elevators, in the vending machine alcove on the left"
+                value={dirDraft}
+                onChange={(e) => setDirDraft(e.target.value)}
+              />
+              <div className="dir-actions">
+                <button
+                  className="submit-btn dir-save"
+                  disabled={!dirDraft.trim() || savingDir}
+                  onClick={saveDirections}
+                >
+                  {savingDir ? "Saving…" : "Save"}
+                </button>
+                <button
+                  className="dir-cancel"
+                  onClick={() => setEditingDir(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+              {dirError && <div className="error-banner">{dirError}</div>}
+            </>
+          )}
+          <div className="dir-note">
+            Anyone can improve these directions. The map pin and building are
+            fixed.
+          </div>
+        </div>
 
         <div className="report-card">
           <h3>Just used it? Report its condition 👇</h3>

@@ -358,6 +358,57 @@ select {
   margin-bottom: 3px;
 }
 
+.dir-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dir-edit-btn {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--maroon);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 12px;
+  background: var(--bg);
+}
+
+.dir-edit-btn:active {
+  background: var(--border);
+}
+
+.dir-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dir-actions .dir-save {
+  flex: 1;
+  margin-top: 10px;
+  padding: 11px;
+  min-height: 0;
+  font-size: 14.5px;
+}
+
+.dir-cancel {
+  margin-top: 10px;
+  padding: 11px 18px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.dir-note {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
 .big-status {
   display: flex;
   align-items: center;
@@ -597,6 +648,16 @@ select {
 
 .fab:active {
   background: var(--maroon-dark);
+}
+
+.fab-hidden {
+  opacity: 0;
+  transform: translateY(80px);
+  pointer-events: none;
+}
+
+.fab {
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 /* ---------- Misc ---------- */
