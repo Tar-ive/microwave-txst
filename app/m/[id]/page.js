@@ -2,7 +2,7 @@
 
 import { useEffect, useState, use } from "react";
 import Link from "next/link";
-import { statusMeta, timeAgo, STATUS_META } from "../../../lib/ui";
+import { statusMeta, timeAgo, dateLabel, STATUS_META } from "../../../lib/ui";
 
 const REPORTABLE = ["clean", "ok", "dirty", "out_of_order"];
 
@@ -110,6 +110,7 @@ export default function MicrowavePage({ params }) {
             </div>
             <div className="when">
               Last reported {timeAgo(mw.latestAt)}
+              {mw.latestAt ? ` (${dateLabel(mw.latestAt)})` : ""}
               {mw.latestNote ? ` — “${mw.latestNote}”` : ""}
             </div>
           </div>
@@ -177,7 +178,7 @@ export default function MicrowavePage({ params }) {
                   </span>
                   {r.note && <span className="h-note"> — “{r.note}”</span>}
                 </div>
-                <span className="h-time">{timeAgo(r.at)}</span>
+                <span className="h-time">{dateLabel(r.at)}</span>
               </div>
             );
           })}

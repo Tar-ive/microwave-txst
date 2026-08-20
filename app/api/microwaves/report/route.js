@@ -25,7 +25,12 @@ export async function POST(request) {
     return NextResponse.json({ error: "Microwave not found" }, { status: 404 });
   }
 
-  mw.reports.push({ status, note, at: new Date().toISOString() });
+  mw.reports.push({
+    status,
+    note,
+    at: new Date().toISOString(),
+    source: "user",
+  });
   // keep only the most recent 50 reports per microwave
   if (mw.reports.length > 50) {
     mw.reports = mw.reports

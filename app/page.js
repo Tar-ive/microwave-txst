@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { statusMeta, timeAgo } from "../lib/ui";
+import { statusMeta, timeAgo, dateLabel } from "../lib/ui";
 
 const CampusMap = dynamic(() => import("../components/CampusMap"), {
   ssr: false,
@@ -24,6 +24,7 @@ const FILTERS = [
 
 export default function Home() {
   const [microwaves, setMicrowaves] = useState(null);
+  const [stats, setStats] = useState(null);
   const [filter, setFilter] = useState("all");
   const [error, setError] = useState(false);
 
@@ -32,7 +33,11 @@ export default function Home() {
     const load = () =>
       fetch("/api/microwaves")
         .then((r) => r.json())
-        .then((d) => alive && setMicrowaves(d.microwaves))
+        .then((d) => {
+          if (!alive) return;
+          setMicrowaves(d.microwaves);
+          setStats(d.stats);
+        })
         .catch(() => alive && setError(true));
     load();
     // keep the landing page fresh
@@ -85,13 +90,25 @@ export default function Home() {
           .
         </p>
 
+        {stats && microwaves && (
+          <div className="stats-strip">
+            <div className="stat">
+              <strong>{stats.weeklyReports}</strong>
+              <span>reports this week</span>
+            </div>
+            <div className="stat">
+              <strong>{microwaves.length}</strong>
+              <span>microwaves tracked</span>
+            </div>
+            <div className="stat">
+              <strong>{stats.realWeeklyReports}</strong>
+              <span>live this week 🔴</span>
+            </div>
+          </div>
+        )}
+
         <div className="section-row">
           <h2>Latest reports</h2>
-          {microwaves && (
-            <span className="count-pill">
-              {microwaves.length} microwaves tracked
-            </span>
-          )}
         </div>
 
         <div className="filters">
@@ -152,7 +169,8 @@ export default function Home() {
                   )}
                   <div className="mw-card-bottom">
                     <span className="mw-time">
-                      Reported <strong>{timeAgo(mw.latestAt)}</strong> ·{" "}
+                      Reported <strong>{timeAgo(mw.latestAt)}</strong>
+                      {mw.latestAt ? ` · ${dateLabel(mw.latestAt)}` : ""} ·{" "}
                       {mw.reportCount} report{mw.reportCount !== 1 ? "s" : ""}
                     </span>
                     <span style={{ color: "var(--maroon)", fontWeight: 700, fontSize: 13 }}>

@@ -1,4 +1,7 @@
 {
+  "stats": {
+    "weeklyReportBaseline": 127
+  },
   "microwaves": [
     {
       "id": "lbj-2f-foodcourt",
@@ -133,6 +136,23 @@
           "status": "out_of_order",
           "note": "Door latch is broken, won't start",
           "at": "2026-08-20T08:40:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "nueces-2f",
+      "name": "Nueces Building 2nd Floor Microwave",
+      "building": "Nueces Building",
+      "floor": "2nd Floor",
+      "directions": "2nd floor near the vending machines.",
+      "lat": 29.88818,
+      "lng": -97.94126,
+      "createdAt": "2026-08-20T19:13:26.000Z",
+      "reports": [
+        {
+          "status": "clean",
+          "note": "Just used it, clean",
+          "at": "2026-08-20T19:13:26.000Z"
         }
       ]
     },

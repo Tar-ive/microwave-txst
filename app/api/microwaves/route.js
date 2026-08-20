@@ -1,5 +1,12 @@
 import { NextResponse } from "next/server";
-import { readDb, writeDb, withLatest, slugify, STATUSES } from "../../../lib/db";
+import {
+  readDb,
+  writeDb,
+  withLatest,
+  slugify,
+  computeStats,
+  STATUSES,
+} from "../../../lib/db";
 
 export const dynamic = "force-dynamic";
 
@@ -8,7 +15,7 @@ export async function GET() {
   const list = db.microwaves
     .map(withLatest)
     .sort((a, b) => new Date(b.latestAt || 0) - new Date(a.latestAt || 0));
-  return NextResponse.json({ microwaves: list });
+  return NextResponse.json({ microwaves: list, stats: computeStats(db) });
 }
 
 // Add a new microwave (crowdsourced discovery)
@@ -56,6 +63,7 @@ export async function POST(request) {
         status,
         note: "First report — microwave added",
         at: new Date().toISOString(),
+        source: "user",
       },
     ],
   };
