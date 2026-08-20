@@ -1,0 +1,157 @@
+{
+  "microwaves": [
+    {
+      "id": "lbj-2f-foodcourt",
+      "name": "LBJ Food Court Microwave",
+      "building": "LBJ Student Center",
+      "floor": "2nd Floor",
+      "directions": "In the food court seating area, near the drink stations by 1899 Market.",
+      "lat": 29.88935,
+      "lng": -97.94438,
+      "createdAt": "2026-08-18T15:00:00.000Z",
+      "reports": [
+        {
+          "status": "clean",
+          "note": "Wiped down, works great",
+          "at": "2026-08-20T15:10:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "lbj-1f-lounge",
+      "name": "LBJ 1st Floor Lounge Microwave",
+      "building": "LBJ Student Center",
+      "floor": "1st Floor",
+      "directions": "Lounge seating near Chick-fil-A, along the wall by the vending machines.",
+      "lat": 29.88929,
+      "lng": -97.94445,
+      "createdAt": "2026-08-18T15:00:00.000Z",
+      "reports": [
+        {
+          "status": "ok",
+          "note": "Works but a little splattered inside",
+          "at": "2026-08-20T13:45:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "alkek-1f-vending",
+      "name": "Alkek Library Vending Area Microwave",
+      "building": "Alkek Library",
+      "floor": "1st Floor",
+      "directions": "Vending machine alcove past the main entrance, to the left of the elevators.",
+      "lat": 29.8889,
+      "lng": -97.94306,
+      "createdAt": "2026-08-18T15:00:00.000Z",
+      "reports": [
+        {
+          "status": "clean",
+          "note": "",
+          "at": "2026-08-20T11:20:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "jones-1f",
+      "name": "Jones Dining Microwave",
+      "building": "Jones Dining Center",
+      "floor": "1st Floor",
+      "directions": "Near the utensil and condiment station inside the dining hall.",
+      "lat": 29.88786,
+      "lng": -97.94303,
+      "createdAt": "2026-08-18T15:00:00.000Z",
+      "reports": [
+        {
+          "status": "dirty",
+          "note": "Someone exploded soup in it, needs a wipe",
+          "at": "2026-08-20T12:05:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "mccoy-2f-lounge",
+      "name": "McCoy Hall Student Lounge Microwave",
+      "building": "McCoy Hall",
+      "floor": "2nd Floor",
+      "directions": "Business student lounge, next to the coffee vending machine.",
+      "lat": 29.88806,
+      "lng": -97.94465,
+      "createdAt": "2026-08-18T15:00:00.000Z",
+      "reports": [
+        {
+          "status": "clean",
+          "note": "",
+          "at": "2026-08-19T18:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "ingram-1f-lounge",
+      "name": "Ingram Hall Commons Microwave",
+      "building": "Bruce & Gloria Ingram Hall",
+      "floor": "1st Floor",
+      "directions": "Engineering commons area near the study tables.",
+      "lat": 29.88747,
+      "lng": -97.94563,
+      "createdAt": "2026-08-18T15:00:00.000Z",
+      "reports": [
+        {
+          "status": "ok",
+          "note": "",
+          "at": "2026-08-19T20:15:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "commons-1f",
+      "name": "Commons Hall Microwave",
+      "building": "Commons Hall",
+      "floor": "1st Floor",
+      "directions": "Inside Commons Dining, by the beverage station.",
+      "lat": 29.88802,
+      "lng": -97.94024,
+      "createdAt": "2026-08-18T15:00:00.000Z",
+      "reports": [
+        {
+          "status": "unknown",
+          "note": "Haven't checked recently",
+          "at": "2026-08-19T09:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "src-lobby",
+      "name": "Student Rec Center Lobby Microwave",
+      "building": "Student Recreation Center",
+      "floor": "1st Floor",
+      "directions": "Lobby vending area near the front desk.",
+      "lat": 29.88865,
+      "lng": -97.95065,
+      "createdAt": "2026-08-18T15:00:00.000Z",
+      "reports": [
+        {
+          "status": "out_of_order",
+          "note": "Door latch is broken, won't start",
+          "at": "2026-08-20T08:40:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "evans-2f",
+      "name": "Evans Liberal Arts Microwave",
+      "building": "Evans Liberal Arts",
+      "floor": "2nd Floor",
+      "directions": "Break area near the vending machines by the stairwell.",
+      "lat": 29.88877,
+      "lng": -97.94173,
+      "createdAt": "2026-08-18T15:00:00.000Z",
+      "reports": [
+        {
+          "status": "clean",
+          "note": "",
+          "at": "2026-08-18T16:25:00.000Z"
+        }
+      ]
+    }
+  ]
+}
